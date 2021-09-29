@@ -28,9 +28,9 @@ class MowerTest {
         Position position = new Position(1,2);
         String orientation = Orientation.NORTH.getValue();
         Mower mower = new Mower(position,orientation,lawn);
-        Position newPosition = mower.moveNext(position.copy());
+        Position actualPosition = mower.moveNext(position.copy());
         Position expectedPosition = new Position(1, 3);
-        assertEquals(newPosition, expectedPosition, "Doit modifier la position actuelle en increment y+1 sans changer d'orientation");
+        assertEquals(expectedPosition, actualPosition, "Doit modifier la position actuelle en increment y+1 sans changer d'orientation");
     }
 
     @Test
@@ -38,9 +38,9 @@ class MowerTest {
         Position position = new Position(1,2);
         String orientation = Orientation.NORTH.getValue();
         Mower mower = new Mower(position,orientation,lawn);
-        String newOrientation = mower.changeOrientation(Command.GAUCHE.getValue());
+        String actualOrientation = mower.changeOrientation(Command.GAUCHE.getValue());
         String expectedPosition = Orientation.WEST.getValue();
-        assertEquals(newOrientation, expectedPosition, "La tondeuse etant oriente vers le NORD, l'Action GAUCHE oriente la tondeuse vers l'OUEST");
+        assertEquals(expectedPosition,actualOrientation, "La tondeuse etant oriente vers le NORD, l'Action GAUCHE oriente la tondeuse vers l'OUEST");
     }
 
     @Test
@@ -48,13 +48,13 @@ class MowerTest {
         String commands = "AADAADADDA";
         Position position = new Position(3,3);
         String orientation = Orientation.EAST.getValue();
-        Mower mower1 = new Mower(position,orientation,lawn);
-        mower1.move(commands);
+        Mower actualPosition = new Mower(position,orientation,lawn);
+        actualPosition.move(commands);
 
         Position position2 = new Position(5,1);
         String orientation2 = Orientation.EAST.getValue();
-        Mower expectedPosition1 = new Mower(position2,orientation2,lawn);
+        Mower expectedPosition = new Mower(position2,orientation2,lawn);
 
-        assertEquals(mower1, expectedPosition1, "Le resultat attendue est 1 3 N");
+        assertEquals(expectedPosition, actualPosition, "Le resultat attendue est 1 3 N");
     }
 }

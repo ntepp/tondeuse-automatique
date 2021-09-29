@@ -63,7 +63,14 @@ public class Mower {
     }
 
     public void move(String commands){
-        return;
+        for (String command : Utils.parseCommand(commands)){
+            Action action = new Action(command);
+            if(action.isMove() && canMove()){
+                moveNext(position);
+            }else {
+                changeOrientation(command);
+            }
+        }
     }
 
     @Override

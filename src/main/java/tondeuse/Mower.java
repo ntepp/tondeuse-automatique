@@ -23,11 +23,43 @@ public class Mower {
     }
 
     public Position moveNext(Position p) {
-        return new Position(0,0);
+        if(Orientation.NORTH.getValue().equals(this.orientation)){
+            p.moveUp();
+        }else if(Orientation.WEST.getValue().equals(this.orientation)) {
+            p.moveLeft();
+        }else if(Orientation.EAST.getValue().equals(this.orientation)) {
+            p.moveRight();
+        }else if(Orientation.SOUTH.getValue().equals(this.orientation)) {
+            p.moveDown();
+        }
+
+        return p;
     }
 
     public String changeOrientation(String command) {
-        return this.orientation;
+        if(Command.DROITE.getValue().equals(command)) {
+            if(Orientation.NORTH.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.EAST.getValue();
+            }else if(Orientation.EAST.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.SOUTH.getValue();
+            }else if (Orientation.SOUTH.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.WEST.getValue();
+            }else if (Orientation.WEST.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.NORTH.getValue();
+            }
+        } else if(Command.GAUCHE.getValue().equals(command)) {
+            if(Orientation.NORTH.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.WEST.getValue();
+            }else if(Orientation.WEST.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.SOUTH.getValue();
+            }else if (Orientation.SOUTH.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.EAST.getValue();
+            }else if (Orientation.EAST.getValue().equals(this.orientation)) {
+                this.orientation = Orientation.NORTH.getValue();
+            }
+
+        }
+        return orientation;
     }
 
     public void move(String commands){

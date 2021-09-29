@@ -29,7 +29,7 @@ class MowerTest {
         String orientation = Orientation.NORTH.getValue();
         Mower mower = new Mower(position,orientation,lawn);
         Position newPosition = mower.moveNext(position.copy());
-        Position expectedPosition = new Position(1, 2);
+        Position expectedPosition = new Position(1, 3);
         assertEquals(newPosition, expectedPosition, "Doit modifier la position actuelle en increment y+1 sans changer d'orientation");
     }
 

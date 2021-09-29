@@ -18,7 +18,8 @@ public class Mower {
     }
 
     public boolean canMove() {
-        return false;
+        Position newPosition = this.position.copy();
+        return lawn.isValidPosition(newPosition);
     }
 
     public Position moveNext(Position p) {

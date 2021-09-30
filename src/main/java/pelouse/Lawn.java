@@ -14,4 +14,12 @@ public class Lawn {
     public boolean isValidPosition(Position p) {
         return p.getX()>=0 && p.getY()>=0 && p.getX() <= width && p.getY() <= length;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getLength() {
+        return length;
+    }
 }

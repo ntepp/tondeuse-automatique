@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
+    private FileUtils() {
+    }
 
     public static final String INPUT_FILE = "/input.text";
 
-    public List<String> readFile() throws IOException {
+    public static List<String> readFile() throws IOException {
         List<String> inputData = new ArrayList<>();
-        InputStream inputStream = getClass().getResourceAsStream(INPUT_FILE);
+        InputStream inputStream = FileUtils.class.getResourceAsStream(INPUT_FILE);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = br.readLine()) != null) {

@@ -4,6 +4,7 @@ import enumarations.Command;
 import enumarations.Orientation;
 import pelouse.Lawn;
 import utils.Utils;
+
 import java.util.Objects;
 
 public class Mower {
@@ -23,13 +24,13 @@ public class Mower {
     }
 
     public Position moveNext(Position p) {
-        if(Orientation.NORTH.getValue().equals(this.orientation)){
+        if (Orientation.NORTH.getValue().equals(this.orientation)) {
             p.moveUp();
-        }else if(Orientation.WEST.getValue().equals(this.orientation)) {
+        } else if (Orientation.WEST.getValue().equals(this.orientation)) {
             p.moveLeft();
-        }else if(Orientation.EAST.getValue().equals(this.orientation)) {
+        } else if (Orientation.EAST.getValue().equals(this.orientation)) {
             p.moveRight();
-        }else if(Orientation.SOUTH.getValue().equals(this.orientation)) {
+        } else if (Orientation.SOUTH.getValue().equals(this.orientation)) {
             p.moveDown();
         }
 
@@ -37,24 +38,24 @@ public class Mower {
     }
 
     public String changeOrientation(String command) {
-        if(Command.DROITE.getValue().equals(command)) {
-            if(Orientation.NORTH.getValue().equals(this.orientation)) {
+        if (Command.DROITE.getValue().equals(command)) {
+            if (Orientation.NORTH.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.EAST.getValue();
-            }else if(Orientation.EAST.getValue().equals(this.orientation)) {
+            } else if (Orientation.EAST.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.SOUTH.getValue();
-            }else if (Orientation.SOUTH.getValue().equals(this.orientation)) {
+            } else if (Orientation.SOUTH.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.WEST.getValue();
-            }else if (Orientation.WEST.getValue().equals(this.orientation)) {
+            } else if (Orientation.WEST.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.NORTH.getValue();
             }
-        } else if(Command.GAUCHE.getValue().equals(command)) {
-            if(Orientation.NORTH.getValue().equals(this.orientation)) {
+        } else if (Command.GAUCHE.getValue().equals(command)) {
+            if (Orientation.NORTH.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.WEST.getValue();
-            }else if(Orientation.WEST.getValue().equals(this.orientation)) {
+            } else if (Orientation.WEST.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.SOUTH.getValue();
-            }else if (Orientation.SOUTH.getValue().equals(this.orientation)) {
+            } else if (Orientation.SOUTH.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.EAST.getValue();
-            }else if (Orientation.EAST.getValue().equals(this.orientation)) {
+            } else if (Orientation.EAST.getValue().equals(this.orientation)) {
                 this.orientation = Orientation.NORTH.getValue();
             }
 
@@ -62,12 +63,12 @@ public class Mower {
         return orientation;
     }
 
-    public void move(String commands){
-        for (String command : Utils.parseCommand(commands)){
+    public void move(String commands) {
+        for (String command : Utils.parseCommand(commands)) {
             Action action = new Action(command);
-            if(action.isMove() && canMove()){
+            if (action.isMove() && canMove()) {
                 moveNext(position);
-            }else {
+            } else {
                 changeOrientation(command);
             }
         }

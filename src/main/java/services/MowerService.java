@@ -2,8 +2,8 @@ package services;
 
 import pelouse.Lawn;
 import tondeuse.Mower;
-import tondeuse.Position;
 import utils.FileUtils;
+import utils.Utils;
 
 import java.io.IOException;
 import java.util.*;
@@ -15,20 +15,20 @@ public class MowerService {
         input = FileUtils.readFile();
     }
 
-    public Lawn getLawn(){
-        return new Lawn(Integer.parseInt(input.get(0).split(" ")[0]), Integer.parseInt(input.get(0).split(" ")[0]));
+    /* Get lawn size from file */
+    public Lawn getLawn() {
+        return Utils.parseLawn(input.get(0));
     }
 
+    /* Get mowers with action from file */
     public Map<Mower, String> getMowersWithActions() {
         LinkedHashMap<Mower, String> mowerList = new LinkedHashMap<>();
-        for (int i = 1; i < input.size() - 1; i=i+2) {
+
+        for (int i = 1; i < input.size() - 1; i = i + 2) {
             String positionString = input.get(i);
-            int x = Integer.parseInt(positionString.split(" ")[0]);
-            int y = Integer.parseInt(positionString.split(" ")[1]);
-            String orientation = positionString.split(" ")[2];
-            Position position = new Position(x, y);
-            String commands = input.get(i+1);
-            mowerList.put(new Mower(position, orientation, getLawn()), commands);
+            Mower mower = Utils.parseMower(getLawn(), positionString);
+            String commands = input.get(i + 1);
+            mowerList.put(mower, commands);
         }
         return mowerList;
     }

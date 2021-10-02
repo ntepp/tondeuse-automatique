@@ -19,20 +19,20 @@ public class Position {
         return y;
     }
 
-    public void moveUp(){
-        this.y = y+1;
+    public void moveUp() {
+        this.y = y + 1;
     }
 
-    public void moveDown(){
-        this.y = y-1;
+    public void moveDown() {
+        this.y = y - 1;
     }
 
-    public void moveLeft(){
-        this.x = x-1;
+    public void moveLeft() {
+        this.x = x - 1;
     }
 
-    public void moveRight(){
-        this.x = x+1;
+    public void moveRight() {
+        this.x = x + 1;
     }
 
     public Position copy() {

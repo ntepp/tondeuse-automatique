@@ -7,25 +7,23 @@ import tondeuse.Position;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Utils {
+public interface Utils {
 
-    public static final String SEPARATOR = " ";
+    String SEPARATOR = " ";
 
-    private Utils() {
-    }
 
-    public static List<String> parseCommand(String command) {
+    static List<String> parseCommand(String command) {
         return command
                 .chars()
                 .mapToObj(action -> ((char) action) + "")
                 .collect(Collectors.toList());
     }
 
-    public static Lawn parseLawn(String input) {
+    static Lawn parseLawn(String input) {
         return new Lawn(Integer.parseInt(input.split(SEPARATOR)[0]), Integer.parseInt(input.split(SEPARATOR)[1]));
     }
 
-    public static Mower parseMower(Lawn lawn, String input) {
+    static Mower parseMower(Lawn lawn, String input) {
         String[] data = input.split(SEPARATOR);
         int x = Integer.parseInt(data[0]);
         int y = Integer.parseInt(data[1]);
